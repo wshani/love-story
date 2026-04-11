@@ -120,3 +120,50 @@ body {
         transform: rotateY(360deg) rotate(-45deg) scale(1);
     }
 }
+
+body {
+    margin: 0;
+    padding: 10px;
+    overflow-x: hidden;
+}
+
+button {
+    touch-action: manipulation;
+}
+
+/* 📱 MOBILE RESPONSIVE DESIGN */
+@media screen and (max-width: 768px) {
+
+    h1 {
+        font-size: 22px;
+        padding: 10px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    button {
+        font-size: 16px;
+        padding: 8px 14px;
+    }
+
+    canvas {
+        width: 90%;
+        height: auto;
+    }
+
+    #popup img {
+        width: 80%;
+        max-width: 250px;
+    }
+
+    #message {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    .scene {
+        transform: scale(0.8);
+    }
+}
