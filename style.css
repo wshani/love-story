@@ -1,0 +1,122 @@
+body {
+    background: black;
+    color: white;
+    text-align: center;
+    font-family: Arial;
+}
+
+h1 {
+    color: #ff4d6d;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 18px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+#yesBtn {
+    background: #ff4d6d;
+    color: white;
+}
+
+#noBtn {
+    background: gray;
+    color: white;
+    position: relative;
+}
+
+#shareBtn {
+    background: #25D366;
+    color: white;
+    font-weight: bold;
+}
+
+#message {
+    margin-top: 15px;
+    font-size: 20px;
+    color: pink;
+}
+
+canvas {
+    margin-top: 20px;
+    background: #111;
+}
+
+#popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #222;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#popup img {
+    width: 250px;
+    border-radius: 10px;
+}
+------------------------------
+/* 🌌 3D SCENE BACKGROUND */
+body {
+    overflow-x: hidden;
+    background: radial-gradient(circle, #111, #000);
+}
+
+/* 🧊 3D Scene */
+.scene {
+    width: 200px;
+    height: 200px;
+    margin: 40px auto;
+    perspective: 800px;
+}
+
+/* ❤️ HEART CORE */
+.heart {
+    width: 100px;
+    height: 100px;
+    background: #ff4d6d;
+    position: relative;
+    transform: rotate(-45deg);
+    animation: rotate3d 4s infinite linear;
+    box-shadow: 0 0 40px #ff4d6d;
+}
+
+/* ❤️ HEART SHAPE PARTS */
+.heart::before,
+.heart::after {
+    content: "";
+    width: 100px;
+    height: 100px;
+    background: #ff4d6d;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.heart::before {
+    top: -50px;
+    left: 0;
+}
+
+.heart::after {
+    left: 50px;
+    top: 0;
+}
+
+/* 🔄 3D ROTATION */
+@keyframes rotate3d {
+    0% {
+        transform: rotateY(0deg) rotate(-45deg) scale(1);
+    }
+    50% {
+        transform: rotateY(180deg) rotate(-45deg) scale(1.2);
+    }
+    100% {
+        transform: rotateY(360deg) rotate(-45deg) scale(1);
+    }
+}
