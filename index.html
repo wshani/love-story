@@ -15,21 +15,30 @@
 </div>
 
 <h1 id="names">💖 Shani ❤️ Minura 💖</h1>
-<p>Engagement Anniversary: <b>17th of April</b></p>
+<h2 <p>Engagement Anniversary: <b>17th of April</b></p> </h2>
 
 <h2 id="question">Do you love me? ❤️</h2>
 
-<button id="yesBtn" onclick="startStory(true)">Yes 💖</button>
-<button id="noBtn" onclick="moveNo()">No</button>
+<!-- <button id="yesBtn" onclick="startStory(true)">Yes 💖</button> -->
+ <button id="yesBtn" onclick="nextStep()">Yes 💖</button>
+ <button id="noBtn" onclick="moveNo()">No</button>
 
 <div id="message"></div>
 
 <button id="shareBtn" onclick="shareWhatsApp()">📲 Share on WhatsApp</button>
 
-<div id="popup">
+<!-- <div id="popup">
     <img id="popupImg">
     <p id="popupText"></p>
     <button onclick="closePopup()">Close</button>
+</div> -->
+
+<div id="popup">
+    <div id="popupContent">
+        <img id="popupImg">
+        <p id="popupText"></p>
+        <button onclick="closePopup()">Close</button>
+    </div>
 </div>
 
 <canvas id="heartCanvas" width="400" height="400"></canvas>

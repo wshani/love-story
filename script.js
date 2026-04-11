@@ -14,45 +14,42 @@ const ctx = canvas.getContext("2d");
 let musicStarted = false;
 
 /* 1️⃣ START STORY */
-function startStory() {
-    if (!musicStarted) {
-        document.getElementById("bgMusic").play();
-        musicStarted = true;
-    }
+// 
 
-    nextStep();
-}
-
-/* 2️⃣ NEXT STEP FLOW */
 function nextStep() {
-    if (step < data.length) {
-        document.getElementById("message").innerText = data[step].text;
-        showPopup(data[step]);
-        drawHeart(step + 1);
+    if (step >= data.length) return;
 
-        // ❤️ HEART GLOW UPDATE (YOUR LINE ADDED HERE)
-        document.querySelector(".heart").style.boxShadow =
-            `0 0 ${20 + step * 10}px #ff4d6d`;
+    const item = data[step];
 
-        step++;
-    }
+    document.getElementById("message").innerText = item.text;
+    showPopup(item);
+    drawHeart(step + 1);
 
-    if (step === data.length) {
-        document.getElementById("question").innerText = "I LOVE YOU FOREVER ❤️";
-        launchConfetti();
-    }
+    step++;
+
+    console.log("STEP:", step);
 }
 
 /* POPUP */
-function showPopup(item) {
-    document.getElementById("popupImg").src = item.img;
-    document.getElementById("popupText").innerText = item.text;
-    document.getElementById("popup").style.display = "block";
+// 
 
-    setTimeout(() => {
-        closePopup();
-    }, 2000);
+function showPopup(item) {
+    const popup = document.getElementById("popup");
+    const img = document.getElementById("popupImg");
+    const text = document.getElementById("popupText");
+
+    img.src = "";
+    img.src = item.img;
+
+    text.innerText = item.text;
+
+    popup.style.display = "flex";
+    console.log("Popup image:", item.img);
 }
+
+window.onload = () => {
+    document.getElementById("popup").style.display = "none";
+};
 
 function closePopup() {
     document.getElementById("popup").style.display = "none";
@@ -86,6 +83,7 @@ function moveNo() {
 }
 
 /* CONFETTI */
+/*
 function launchConfetti() {
     for (let i = 0; i < 120; i++) {
         let conf = document.createElement("div");
@@ -106,6 +104,7 @@ function launchConfetti() {
         }, 20);
     }
 }
+*/
 
 /* WHATSAPP SHARE */
 function shareWhatsApp() {
@@ -115,6 +114,8 @@ function shareWhatsApp() {
 }
 
 /* BUTTON CLICK */
-document.getElementById("yesBtn").addEventListener("click", nextStep);
+// document.getElementById("yesBtn").addEventListener("click", nextStep);
 
 document.getElementById("bgMusic").volume = 0.4;
+
+img.src = item.img + "?v=" + new Date().getTime();
