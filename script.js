@@ -121,6 +121,7 @@ function closePopup() {
     // show completed canvas heart ON TOP of image5
     drawHeart(5);
     document.getElementById("heartCanvas").style.display = "block";
+
   }
 }
 

@@ -122,7 +122,7 @@ body {
   padding: 18px;
 
   /* ✅ strong dark layer so text is visible */
-  background: rgba(0, 0, 0, 0.55);
+  background:transparent;
 }
 
 .middle-overlay h1,
@@ -131,7 +131,8 @@ body {
 #message,
 .final-love {
   color: white;
-  text-shadow: 0 3px 10px rgba(0,0,0,0.9);
+  /* text-shadow: 0 3px 10px rgba(0,0,0,0.9); */
+  text-shadow: 0 3px 10px rgba(0,0,0,0.85); /* ✅ readable on photo */
 }
 
 /* Image 4: background image for middle text area */
@@ -147,6 +148,23 @@ body {
 
   display: none;             /* shown by JS */
 }
+
+#slot5{
+  position: relative; /* ✅ required so canvas stays inside this box */
+  overflow: hidden;
+}
+
+#slot5Img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: none;          /* shown when filled */
+  position: relative;
+  z-index: 1;             /* image layer */
+}
+
+.slot { border: none; }
+.slot.filled { border: 3px solid rgba(255, 125, 0, 0.85); }
 
 /* IMAGE SLOTS */
 .slot {
@@ -452,8 +470,21 @@ canvas {
 }
 
 #heartCanvas {
-  width: clamp(180px, 25vw, 360px);
+  /* width: clamp(180px, 25vw, 360px);
+  height: auto; */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 85%;
   height: auto;
+
+  z-index: 10;            /* ✅ above the photo */
+  display: none;          /* ✅ only show at the end */
+  pointer-events: none;   /* ✅ canvas won't steal clicks */ 
+  /* 【4-8504cf】 */
+
 }
 
 
