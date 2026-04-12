@@ -9,8 +9,110 @@
 
 
 <body>
+    <div class="page-grid">
 
-<div class="main-container">
+  <!-- TOP ROW -->
+  <div class="slot" id="slot1"><img id="slot1Img" alt="Memory 1"></div>
+  <div class="slot" id="slot2"><img id="slot2Img" alt="Memory 2"></div>
+  <div class="slot" id="slot3"><img id="slot3Img" alt="Memory 3"></div>
+
+  <!-- LEFT: glowing heart -->
+  <div class="scene-area">
+    <div class="scene">
+      <div class="heart"></div>
+    </div>
+  </div>
+
+  <!-- MIDDLE: IMAGE 4 background + ALL TEXTS on top -->
+  <div class="middle-area">
+    <img id="slot4Img" class="middle-bg">
+
+    <div class="middle-overlay">
+      <h1>💖 Shani ❤️ Minura 💖</h1>
+      <p class="eng-date">Engagement Anniversary: <b>17th of April</b></p>
+
+      <h2 id="question">Do you love me? ❤️</h2>
+
+      <div class="btn-area">
+        <button id="yesBtn" onclick="nextStep()">Yes 💖</button>
+        <button id="noBtn" onclick="moveNo()">No 😜</button>
+      </div>
+
+      <div id="message"></div>
+
+      <div id="finalLove" class="final-love">
+        I Love You Forever 💖<br>
+        💍 Happy Anniversary 💖
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: IMAGE 5 (old canvas place) + HEART CANVAS overlay at the end -->
+  <div class="slot" id="slot5">
+    <img id="slot5Img" alt="Memory 5">
+
+    <!-- Canvas sits ON TOP of image 5 at the end -->
+    <canvas id="heartCanvas" width="400" height="400"></canvas>
+  </div>
+
+</div>
+
+  <!-- <div class="page-grid">
+
+    TOP ROW IMAGES
+    <div class="slot" id="slot1"><img id="slot1Img" alt="Memory 1"></div>
+    <div class="slot" id="slot2"><img id="slot2Img" alt="Memory 2"></div>
+    <div class="slot" id="slot3"><img id="slot3Img" alt="Memory 3"></div>
+
+    
+LEFT: glowing heart
+  <div class="scene-area">
+    <div class="scene">
+      <div class="heart"></div>
+    </div>
+  </div>
+
+    <div class="center-area">
+      <h1>💖 Shani ❤️ Minura 💖</h1>
+      <p class="eng-date">Engagement Anniversary: <b>17th of April</b></p>
+
+      <h2 id="question">Do you love me? ❤️</h2>
+
+      <div class="btn-area">
+        <button id="yesBtn" onclick="nextStep()">Yes 💖</button>
+        <button id="noBtn" onclick="moveNo()">No 😜</button>
+      </div>
+
+      <div id="message"></div>
+
+      Final love text (hidden until the end)
+      <div id="finalLove" class="final-love">
+        I Love You Forever 💖 💍 <br>
+        Happy Anniversary 💖
+      </div>
+    </div>
+
+    <div class="canvas-area">
+      <canvas id="heartCanvas" width="400" height="400"></canvas>
+    </div>
+
+    BOTTOM ROW IMAGES
+    <div class="slot" id="slot4"><img id="slot4Img" alt="Memory 4"></div>
+    <div class="slot" id="slot5"><img id="slot5Img" alt="Memory 5"></div>
+
+  </div> -->
+
+  <!-- POPUP (keep your existing popup) -->
+  <div id="popup">
+    <div id="popupContent">
+      <img id="popupImg">
+      <p id="popupText"></p>
+      <button onclick="closePopup()">Close</button>
+    </div>
+  </div>
+
+
+<!-- <div class="main-container">
 
     <div class="scene">
     <div class="heart"></div>
@@ -25,6 +127,11 @@
         <button id="yesBtn" onclick="nextStep()">Yes 💖</button>
         <button id="noBtn" onclick="moveNo()">No 😜</button>
 
+        <div class="btn-area">
+            <button id="yesBtn" onclick="nextStep()">Yes 💖</button>
+            <button id="noBtn" onclick="moveNo()">No 😜</button>
+        </div>
+
         <div id="message"></div>
     </div>
 
@@ -32,7 +139,7 @@
         <canvas id="heartCanvas" width="400" height="400"></canvas>
     </div>
 
-</div>
+</div> -->
 
 <!-- <div class="scene">
     <div class="heart"></div>
@@ -55,13 +162,13 @@
     <button onclick="closePopup()">Close</button>
 </div> -->
 
-<div id="popup">
+<!-- <div id="popup">
     <div id="popupContent">
         <img id="popupImg">
         <p id="popupText"></p>
         <button onclick="closePopup()">Close</button>
     </div>
-</div>
+</div> -->
 
 <!-- <canvas id="heartCanvas" width="400" height="400"></canvas> -->
 
@@ -69,6 +176,6 @@
     <source src="music.mp3" type="audio/mp3">
 </audio>
 
-<script src="script.js"></script>
+<script src="script.js"></script> 
 </body>
 </html>

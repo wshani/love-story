@@ -1,4 +1,16 @@
+console.log("✅ script.js loaded");
 let step = 0;
+
+let currentItem = null;
+let placedCount = 0;
+
+const slotIds = ["slot1Img", "slot2Img", "slot3Img", "slot4Img", "slot5Img"];
+const addedImages = new Set();
+
+const bgMusic = document.getElementById("bgMusic");
+bgMusic.volume = 0.4;
+
+let musicStarted = false;
 
 const data = [
     { text: "Our first memory 💕", img: "photo1.jpg" },
@@ -11,15 +23,20 @@ const data = [
 const canvas = document.getElementById("heartCanvas");
 const ctx = canvas.getContext("2d");
 
-let musicStarted = false;
-
 /* 1️⃣ START STORY */
 // 
 
 function nextStep() {
+// ✅ start music on first user click
+  if (!musicStarted) {
+    bgMusic.play().catch(err => console.log("Music blocked:", err));
+    musicStarted = true;
+  }
+
     if (step >= data.length) return;
 
     const item = data[step];
+    currentItem = item;
 
     document.getElementById("message").innerText = item.text;
     showPopup(item);
@@ -28,6 +45,14 @@ function nextStep() {
     step++;
 
     console.log("STEP:", step);
+
+    // if (step === data.length) {
+    //     document.getElementById("yesBtn").style.display = "none";
+    //     document.getElementById("noBtn").style.display = "none";
+    //     document.getElementById("question").style.display = "none";
+
+    //     document.getElementById("message").innerText = "I Love You Forever 💖💍 Happy Anniversary 💖";
+    // }
 }
 
 /* POPUP */
@@ -38,13 +63,25 @@ function showPopup(item) {
     const img = document.getElementById("popupImg");
     const text = document.getElementById("popupText");
 
-    img.src = "";
-    img.src = item.img;
+    // img.src = "";
+    // img.src = item.img;
 
+    // text.innerText = item.text;
+
+    // popup.style.display = "flex";
+    // console.log("Popup image:", item.img);
+
+    
+    // img.src = item.img + "?v=" + Date.now(); // cache buster
+    // text.innerText = item.text;
+
+    
+    img.src = item.img + "?v=" + Date.now();
     text.innerText = item.text;
 
+
     popup.style.display = "flex";
-    console.log("Popup image:", item.img);
+
 }
 
 window.onload = () => {
@@ -52,8 +89,73 @@ window.onload = () => {
 };
 
 function closePopup() {
-    document.getElementById("popup").style.display = "none";
+  document.getElementById("popup").style.display = "none";
+  if (!currentItem) return;
+
+  if (addedImages.has(currentItem.img)) return;
+  addedImages.add(currentItem.img);
+
+  if (placedCount >= slotIds.length) return;
+
+  const id = slotIds[placedCount];
+  const imgEl = document.getElementById(id);
+
+  imgEl.src = currentItem.img + "?v=" + Date.now();
+  imgEl.style.display = "block";
+
+  // If this image goes into a normal slot, add border only after image shows
+  const parentSlot = imgEl.closest(".slot");
+  if (parentSlot) parentSlot.classList.add("filled");
+
+  placedCount++;
+
+  // ✅ After last image is placed:
+  if (placedCount === slotIds.length) {
+    document.getElementById("question").style.display = "none";
+    document.querySelector(".btn-area").style.display = "none";
+    document.getElementById("message").style.display = "none";
+
+    // show final text
+    document.getElementById("finalLove").style.display = "block";
+
+    // show completed canvas heart ON TOP of image5
+    drawHeart(5);
+    document.getElementById("heartCanvas").style.display = "block";
+  }
 }
+
+// function closePopup() {
+//   document.getElementById("popup").style.display = "none";
+
+//   if (!currentItem) return;
+
+//   // prevent duplicates
+//   if (addedImages.has(currentItem.img)) return;
+//   addedImages.add(currentItem.img);
+
+//   // if all slots are filled, do nothing
+//   if (placedCount >= slotIds.length) return;
+
+//   // place into next slot (1 -> 5)
+//   const imgEl = document.getElementById(slotIds[placedCount]);
+//   imgEl.src = currentItem.img + "?v=" + Date.now();
+//   imgEl.style.display = "block";
+
+//   placedCount++;
+
+//   // if finished all images -> show final screen
+//   if (placedCount === data.length) {
+//     document.getElementById("question").style.display = "none";
+//     document.querySelector(".btn-area").style.display = "none";
+//     document.getElementById("message").style.display = "none";
+//     document.getElementById("finalLove").style.display = "block";
+//   }
+// }
+
+// function closePopup() {
+//     document.getElementById("popup").style.display = "none";
+
+// }
 
 /* HEART DRAW */
 // function drawHeart(level) {
@@ -102,10 +204,78 @@ function drawHeart(level) {
 }
 
 /* NO BUTTON MOVE */
+// function moveNo() {
+// //   const btn = document.getElementById("noBtn");
+// //   const area = document.querySelector(".btn-area");
+
+// //   const maxX = area.clientWidth - btn.offsetWidth;
+// //   const maxY = area.clientHeight - btn.offsetHeight;
+
+// //   btn.style.left = Math.random() * maxX + "px";
+// //   btn.style.top  = Math.random() * maxY + "px";
+
+  
+//   const btn = document.getElementById("noBtn");
+//   const area = document.querySelector(".btn-area");
+
+//   const maxX = area.clientWidth - btn.offsetWidth;
+//   const maxY = area.clientHeight - btn.offsetHeight;
+
+//   btn.style.left = Math.random() * maxX + "px";
+//   btn.style.top  = Math.random() * maxY + "px";
+
+// }
+
+
+function isOverlapping(rect1, rect2) {
+  return !(
+    rect1.right < rect2.left ||
+    rect1.left > rect2.right ||
+    rect1.bottom < rect2.top ||
+    rect1.top > rect2.bottom
+  );
+}
+
+
+
 function moveNo() {
-    const btn = document.getElementById("noBtn");
-    btn.style.left = Math.random() * 80 + "%";
-    btn.style.top = Math.random() * 80 + "%";
+    // const btn = document.getElementById("noBtn");
+    // btn.style.left = Math.random() * 80 + "%";
+    // btn.style.top = Math.random() * 80 + "%";
+    
+    const yesBtn = document.getElementById("yesBtn");
+
+  const maxTries = 50;  // how many times to try before giving up
+  const padding = 12;   // extra “safe gap” around Yes button
+
+  for (let i = 0; i < maxTries; i++) {
+
+    // your existing random movement
+    noBtn.style.left = Math.random() * 80 + "%";
+    noBtn.style.top  = Math.random() * 80 + "%";
+
+    // measure after moving
+    const noRect = noBtn.getBoundingClientRect();
+    const yesRect = yesBtn.getBoundingClientRect();
+
+    // make a bigger "no-go zone" around Yes
+    const safeYes = {
+      left: yesRect.left - padding,
+      right: yesRect.right + padding,
+      top: yesRect.top - padding,
+      bottom: yesRect.bottom + padding
+    };
+
+    // ✅ RULE: if not overlapping, keep this position and stop
+    if (!isOverlapping(noRect, safeYes)) {
+      return;
+    }
+  }
+
+  // fallback (if screen is too small or cant find space)
+  noBtn.style.left = "80%";
+  noBtn.style.top = "80%";
+
 }
 
 /* CONFETTI */
@@ -133,15 +303,15 @@ function launchConfetti() {
 */
 
 /* WHATSAPP SHARE */
-function shareWhatsApp() {
-    const link = window.location.href;
-    const text = `💖 Look what I made for you ❤️\n${link}`;
-    window.open("https://wa.me/?text=" + encodeURIComponent(text), "_blank");
-}
+// function shareWhatsApp() {
+//     const link = window.location.href;
+//     const text = `💖 Look what I made for you ❤️\n${link}`;
+//     window.open("https://wa.me/?text=" + encodeURIComponent(text), "_blank");
+// }
 
 /* BUTTON CLICK */
 // document.getElementById("yesBtn").addEventListener("click", nextStep);
 
 document.getElementById("bgMusic").volume = 0.4;
 
-img.src = item.img + "?v=" + new Date().getTime();
+// img.src = item.img + "?v=" + new Date().getTime();
