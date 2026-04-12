@@ -1,3 +1,25 @@
+.main-container {
+    display: flex;
+    justify-content: center;   /* CENTER THE WHOLE BLOCK */
+    align-items: center;
+    gap: 40px;                 /* space between text & heart */
+
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* TEXT stays centered inside its own area */
+.text-section {
+    text-align: center;
+    max-width: 400px;
+}
+
+/* HEART stays on the right of text */
+.heart-section {
+    display: flex;
+    justify-content: center;
+}
+
 body {
     background: lightpink;
     color: white;
@@ -38,12 +60,42 @@ button {
 #message {
     margin-top: 15px;
     font-size: 20px;
-    color: pink;
+    color: #000(245, 245, 245);
+}
+
+p {
+    margin-bottom: 5px;
+}
+
+#question {
+    margin-top: 0;
+}
+
+#question {
+    color: white;
+    font-weight: bold;
+}
+
+/* canvas {
+    margin-top: 20px;
+    background: #111;
+    align-items: center;
+} */
+
+/* canvas {
+    display: block;
+    margin: 20px auto;
+} */
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 canvas {
-    margin-top: 20px;
-    background: #111;
+    display: block;
+    margin: 20px auto;
 }
 
 /* #popup {
@@ -215,4 +267,12 @@ button {
     .scene {
         transform: scale(0.8);
     }
+
+    .main-container {
+        flex-direction: column;
+    }
+}
+
+.heart-section canvas {
+    width: 300px;
 }

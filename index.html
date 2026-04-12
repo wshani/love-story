@@ -10,22 +10,44 @@
 
 <body>
 
-<div class="scene">
+<div class="main-container">
+
+    <div class="scene">
+    <div class="heart"></div>
+</div>
+
+    <div class="text-section">
+        <h1>💖 Shani ❤️ Minura 💖</h1>
+        <p>Engagement Anniversary: <b>17th of April</b></p>
+
+        <h2 id="question">Do you love me? ❤️</h2>
+
+        <button id="yesBtn" onclick="nextStep()">Yes 💖</button>
+        <button id="noBtn" onclick="moveNo()">No 😜</button>
+
+        <div id="message"></div>
+    </div>
+
+    <div class="heart-section">
+        <canvas id="heartCanvas" width="400" height="400"></canvas>
+    </div>
+
+</div>
+
+<!-- <div class="scene">
     <div class="heart"></div>
 </div>
 
 <h1 id="names">💖 Shani ❤️ Minura 💖</h1>
 <h2 <p>Engagement Anniversary: <b>17th of April</b></p> </h2>
-
 <h2 id="question">Do you love me? ❤️</h2>
 
-<!-- <button id="yesBtn" onclick="startStory(true)">Yes 💖</button> -->
  <button id="yesBtn" onclick="nextStep()">Yes 💖</button>
  <button id="noBtn" onclick="moveNo()">No</button>
 
-<div id="message"></div>
+<div id="message"></div> -->
 
-<button id="shareBtn" onclick="shareWhatsApp()">📲 Share on WhatsApp</button>
+<!-- <button id="shareBtn" onclick="shareWhatsApp()">📲 Share on WhatsApp</button> -->
 
 <!-- <div id="popup">
     <img id="popupImg">
@@ -41,7 +63,7 @@
     </div>
 </div>
 
-<canvas id="heartCanvas" width="400" height="400"></canvas>
+<!-- <canvas id="heartCanvas" width="400" height="400"></canvas> -->
 
 <audio id="bgMusic" loop>
     <source src="music.mp3" type="audio/mp3">

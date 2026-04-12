@@ -56,18 +56,44 @@ function closePopup() {
 }
 
 /* HEART DRAW */
+// function drawHeart(level) {
+//     ctx.clearRect(0, 0, canvas.width, canvas.height);
+//     ctx.strokeStyle = "red";
+//     ctx.beginPath();
+
+//     for (let x = -2; x <= 2; x += 0.01) {
+//         let y = Math.pow(Math.abs(x), 2 / 3) +
+//                 0.8 * Math.cos(level * x);
+
+//         let scale = 80;
+//         let px = 200 + x * scale;
+//         let py = 200 - y * scale;
+
+//         ctx.lineTo(px, py);
+//     }
+
+//     ctx.stroke();
+// }
+
 function drawHeart(level) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.strokeStyle = "red";
+    ctx.lineWidth = 2;
+
     ctx.beginPath();
 
-    for (let x = -2; x <= 2; x += 0.01) {
-        let y = Math.pow(Math.abs(x), 2 / 3) +
-                0.8 * Math.cos(level * x);
+    for (let t = 0; t < Math.PI * 2 * (level / 5); t += 0.01) {
 
-        let scale = 80;
-        let px = 200 + x * scale;
-        let py = 200 - y * scale;
+        let x = 16 * Math.pow(Math.sin(t), 3);
+        let y = 13 * Math.cos(t)
+              - 5 * Math.cos(2 * t)
+              - 2 * Math.cos(3 * t)
+              - Math.cos(4 * t);
+
+        let scale = 10;
+
+        let px = canvas.width / 2 + x * scale;
+        let py = canvas.height / 2 - y * scale;
 
         ctx.lineTo(px, py);
     }
