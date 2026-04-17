@@ -74,9 +74,18 @@ body {
     "scene center canvas"
     "slot4 . slot5";
 
-  align-items: center;
+  align-items: start; /* instead of center */
   justify-items: center;
 }
+
+
+/* Ensure middle + slot5 are also top-aligned */
+.middle-area,
+#slot5,
+.scene-area{
+  align-self: start;
+}
+
 
 /* Place each box into the grid area */
 #slot1 { grid-area: slot1; }
@@ -479,6 +488,7 @@ canvas {
 
   width: 85%;
   height: auto;
+  inset: 0;
 
   z-index: 10;            /* ✅ above the photo */
   display: none;          /* ✅ only show at the end */
